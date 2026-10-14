@@ -1,0 +1,9 @@
+{
+  "name": "kaggle-plugin",
+  "version": "0.1.0",
+  "description": "Work with Kaggle competitions from Claude Code: recon, data setup and submissions",
+  "author": {
+    "name": "Alex",
+    "email": "beatwad@gmail.com"
+  }
+}

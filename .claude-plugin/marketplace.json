@@ -1,0 +1,13 @@
+{
+  "name": "kaggle-local",
+  "owner": {
+    "name": "Alex"
+  },
+  "plugins": [
+    {
+      "name": "kaggle-plugin",
+      "source": "./",
+      "description": "Work with Kaggle competitions from Claude Code: recon, data setup and submissions"
+    }
+  ]
+}

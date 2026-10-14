@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "kaggle": {
+      "command": "uvx",
+      "args": ["--with", "mcp<2", "kaggle-mcp-server"]
+    }
+  }
+}

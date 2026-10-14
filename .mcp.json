@@ -2,7 +2,7 @@
   "mcpServers": {
     "kaggle": {
       "command": "uvx",
-      "args": ["--with", "mcp<2", "kaggle-mcp-server"]
+      "args": ["--from", "${CLAUDE_PLUGIN_ROOT}/server", "kaggle-mcp-server"]
     }
   }
 }

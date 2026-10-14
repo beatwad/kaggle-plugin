@@ -1,6 +1,6 @@
 # kaggle-plugin
 
-Claude Code plugin for Kaggle competitions. It uses the community [`kaggle-mcp-server`](https://github.com/Galaxy-Dawn/kaggle-mcp) and adds three skills:
+Claude Code plugin for Kaggle competitions. It uses a locally patched copy of the community [`kaggle-mcp-server`](https://github.com/Galaxy-Dawn/kaggle-mcp) in [`server/`](server/), with the discussion tools fixed to fetch threads and comments by ID (see [`server/PATCHES.md`](server/PATCHES.md)). It adds three skills:
 
 | Skill | What it does |
 |---|---|
@@ -18,18 +18,24 @@ Claude Code plugin for Kaggle competitions. It uses the community [`kaggle-mcp-s
 
 Never commit the token.
 
+`competition-recon` also uses the Kaggle CLI (`uvx kaggle`, no install needed) to save notebooks to disk. It reads the same credentials.
+
 ## Install
 
+From a shell (works for both the terminal and the VS Code extension):
+
 ```
-/plugin marketplace add /home/alex/Courses/Kaggle/kaggle-plugin
-/plugin install kaggle-plugin@kaggle-local
+claude plugin marketplace add /home/alex/Courses/Kaggle/kaggle-plugin
+claude plugin install kaggle-plugin@kaggle-local
 ```
 
-Restart Claude Code afterwards. For quick testing without installing: `claude --plugin-dir /home/alex/Courses/Kaggle/kaggle-plugin`.
+In the terminal version of Claude Code you can run the same thing as `/plugin marketplace add ...` and `/plugin install ...`. `/plugin` isn't available in the VS Code chat panel.
+
+The plugin is installed for your user and loads in every new session. Check with `claude plugin list`. For quick testing without installing: `claude --plugin-dir /home/alex/Courses/Kaggle/kaggle-plugin`.
 
 ## Usage
 
-Run Claude in your competition folder, then:
+Open your competition folder (in VS Code, as the workspace) and start a new Claude session, then:
 
 ```
 /kaggle-plugin:competition-recon playground-series-s5e10
@@ -40,3 +46,5 @@ Run Claude in your competition folder, then:
 Or just ask in plain language ("do recon on ...", "submit v1.csv") and the skill loads automatically.
 
 Files are created in the current folder: `notes/`, `data/raw/`, `refs/`.
+
+Don't run Claude from the plugin folder itself. There, `.mcp.json` is read as a project config, `${CLAUDE_PLUGIN_ROOT}` isn't set, and the Kaggle server fails to start.
